@@ -4,7 +4,6 @@ namespace App\Application\Paste;
 
 use App\Application\Paste\Dto\PasteInterface;
 use App\Application\Paste\Exception\PasteManagerException;
-use App\Application\Uuid\UuidGeneratorInterface;
 use App\Entity\Paste;
 use DateTimeInterface;
 use DateTime;
@@ -15,8 +14,7 @@ use Throwable;
 class PasteManager
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly UuidGeneratorInterface $uuidGenerator
+        private readonly EntityManagerInterface $entityManager
     ) {}
 
     /**

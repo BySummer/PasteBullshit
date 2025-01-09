@@ -42,9 +42,9 @@ class Paste
     private $syntax;
 
     /**
-     * @ORM\Column(type="string", length=36)
+     * @ORM\Column(type="string", length=8)
      */
-    private $uuid;
+    private $hash;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -104,14 +104,14 @@ class Paste
         return $this;
     }
 
-    public function getUuid(): ?string
+    public function getHash(): ?string
     {
-        return $this->uuid;
+        return $this->hash;
     }
 
-    public function setUuid(string $uuid): self
+    public function setHash(string $hash): self
     {
-        $this->uuid = $uuid;
+        $this->hash = $hash;
 
         return $this;
     }

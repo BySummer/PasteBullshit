@@ -1,0 +1,21 @@
+{% extends '@AdminLTE/Macros/buttons.html.twig'%}
+
+{% macro save_button(label, type, btn_dis, btn_save ) %}
+
+    {% set _type = type|default(admin_lte_context.button.type) %}
+    {% set _size = type|default(admin_lte_context.button.size) %}
+
+    <button id="{{ btn_save }}" type="submit" class="btn btn-{{ _type }}{% if _size %} btn-{{ _size }} {% endif %} " style="margin-bottom: 2%">
+        {% if label %}
+            <span>{{ label }}</span>
+        {% endif %}
+
+        {% if btn_dis %}
+        <script>
+            $('#{{ btn_dis }}').on('submit', function () {
+                $('#{{ btn_save }}').attr('disabled', 'disabled');
+            });
+        </script>
+        {% endif %}
+    </button>
+{% endmacro %}

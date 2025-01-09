@@ -1,0 +1,41 @@
+{% apply spaceless %}
+    {% set route = app.request.attributes.get('_route') %}
+    {% if requestParams is not defined %}
+        {% set requestParams = app.request.query.all %}
+    {% endif %}
+    {% set requestParams = requestParams|merge({(get_pagination_page_param()):1}) %}
+
+    {% import '@AdminLTE/Macros/buttons.html.twig' as button %}
+    {% if nearbyPageLimit is not defined  %}
+        {% set nearbyPageLimit = 4 %}
+    {% endif %}
+
+    {% if pagination.pageCount > 1 %}
+        <ul class="pagination no-margin">
+            {% for i in 1..pagination.pageCount %}
+                {% if ((pagination.page - nearbyPageLimit) - i) == 0 %}
+                    <li class="page-item"><a class="page-link" href="{{ path(route, requestParams|merge({(get_pagination_page_param()):1})) }}">1</a></li>
+                    {% if i != 1 %}
+                        <li class="page-item disabled">
+                            <span>...</span>
+                        </li>
+                    {% endif %}
+                {% elseif ((pagination.page + nearbyPageLimit) - i) == 0 and (pagination.page + nearbyPageLimit) < pagination.pageCount %}
+                    <li class="page-item disabled">
+                        <span>...</span>
+                    </li>
+                {% elseif 0 < (pagination.page - nearbyPageLimit) - i %}
+                {% elseif 0 > (pagination.page + nearbyPageLimit) - i %}
+                {% else %}
+                    <li class="page-item {{ pagination.page == i ? 'active' }}">
+                        <a class="page-link" href="{{ path(route, requestParams|merge({(get_pagination_page_param()): i}))}}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if pagination.page != pagination.pageCount and (pagination.page + nearbyPageLimit) < pagination.pageCount %}
+                <li class="page-item"><a class="page-link" href="{{ path(route, requestParams|merge({(get_pagination_page_param()): pagination.pageCount}))}}">{{ pagination.pageCount }}</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% endapply %}

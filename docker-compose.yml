@@ -1,0 +1,62 @@
+version: '3.7'
+
+networks:
+    paste_bullshit_network:
+        name: paste_bullshit_network
+        ipam:
+            config:
+                - subnet: 172.35.42.0/24
+
+services:
+    paste_bullshit_nginx:
+        image: nginx:1.17.9-alpine
+        container_name: paste_bullshit_network
+        volumes:
+            - ./:/var/www
+            - ./docker/logs/nginx:/var/log/nginx
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/config.template:ro
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        networks:
+            paste_bullshit_network:
+                ipv4_address: 172.35.42.10
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - paste_bullshit_php
+        environment:
+            NGINX_HOST: ${BASE_HOST}
+        command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/config.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    paste_bullshit_php:
+        build:
+            context: docker/php
+            args:
+                - USE_XDEBUG=1
+        container_name: paste_bullshit_php
+        volumes:
+            - ./:/var/www
+            - ./docker/php/php.ini:/usr/local/etc/php/php.ini:ro
+            - ./docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:ro
+        environment:
+            - PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
+            - PHP_OPCACHE_REVALIDATE_FREQ=0
+        networks:
+            paste_bullshit_network:
+                ipv4_address: 172.35.42.20
+    paste_bullshit_mysql:
+        image: mysql:8.0
+        container_name: paste_bullshit_mysql
+        volumes:
+            - ./docker/data/mysql:/var/lib/mysql
+            - ./docker/logs/mysql:/var/log/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+        ports:
+            - "3306:3306"
+        networks:
+            paste_bullshit_network:
+                ipv4_address: 172.35.42.30
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}

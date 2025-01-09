@@ -1,0 +1,124 @@
+.card-img, .card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+label.required:after {
+    content: "";
+    font-size: 100%;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #ced4da;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__choice {
+    background-color: #007bff;
+    border: #006fe6;
+    color: #fff;
+    padding: 0 10px;
+    margin-top: .31rem;
+}
+
+.select2-container .select2-selection--single {
+    border: 1px solid #ced4da;
+    padding: .46875rem .75rem;
+    height: calc(2.25rem + 2px);
+    top: 60%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #888 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    height: 0;
+    left: 10%;
+    margin-left: -4px;
+    margin-top: 0;
+    position: absolute;
+    top: 60%;
+    width: 0;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #ced4da;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #ced4da;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #757575;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: rgba(255,255,255,.7);
+    float: right;
+    margin-left: 5px;
+    margin-right: -2px;
+}
+
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 5px;
+    margin-right: 2rem;
+    padding-right: 2rem;
+}
+
+.leaving-table {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    z-index: 3;
+    background: #FFFFFF;
+    padding: 10px;
+    border-left: solid #f5f5f5;
+    border-width: 0.2em;
+    display: none;
+}
+
+button,
+button:active,
+button:focus {
+    outline: none !important;
+}
+
+.table-responsive {
+    overflow: visible;
+}
+
+.text-block {
+    border: 0.2em solid #f5f5f5;
+    border-bottom-width: 0.5em;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.block-title {
+    margin-bottom: 15px;
+    margin-left: 3px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.input-group>.form-control {
+    padding-left: 10px;
+}

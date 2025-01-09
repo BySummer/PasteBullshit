@@ -1,0 +1,27 @@
+{% extends 'AdminLteCustom/default-layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="shortcut icon" href="{{ asset('includes/main/favicon/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('includes/main/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('includes/bootstrap/datepicker/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('includes/main/css/jquery.datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('includes/main/css/jquery.ui.css') }}">
+{% endblock %}
+
+{% block after_body_start %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/adminlte/adminlte.js') }}"></script>
+    <script src="{{ asset('includes/main/js/jquery.ui.js') }}"></script>
+    <script src="{{ asset('includes/bootstrap/datepicker/js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('includes/main/js/jquery.datetimepicker.min.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}Paste Bullshit{% endblock %}
+{% block logo_mini %}<b>Paste Bullshit</b>{% endblock %}
+{% block logo_large %} <b>Paste Bullshit</b> {% endblock %}
+{% block page_subtitle %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block javascripts %}
+    {% include 'main/includes/javascript.html.twig' %}
+{% endblock %}

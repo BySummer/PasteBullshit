@@ -1,0 +1,31 @@
+{% extends 'main/base.html.twig' %}
+
+{% block page_title %}
+    Создание пасты
+{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form, {'attr': {'id': 'form_create_paste'}}) }}
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+
+                {% import 'macro/buttons.html.twig' as btn %}
+
+                {% block box_body %}
+                    {{ form_row(form.name, {'label':'Название'}) }}
+                    {{ form_row(form.content, {'label':'Паста'}) }}
+                    {{ form_row(form.visibility, {'label':'Ограничение доступа'}) }}
+                    {{ form_row(form.syntax, {'label':'Язык программирования'}) }}
+                    {{ form_row(form.lifetime, {'label':'Срок жизни'}) }}
+                {% endblock %}
+                {% block box_footer %}
+                    <div class="pull-right">
+                        {{ btn.save_button('Сохранить', 'success', 'form_create_paste', 'save_button') }}
+                    </div>
+                {% endblock %}
+            {% endembed %}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

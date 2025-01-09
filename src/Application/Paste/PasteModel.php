@@ -26,15 +26,15 @@ class PasteModel
         self::ONE_MONTH_LIFETIME => self::ONE_MONTH_LIFETIME_NAME,
     ];
 
-    public const VISIBILITY_PUBLIC  = 1;
-    public const VISIBILITY_PRIVATE = 2;
+    public const VISIBILITY_PUBLIC   = 1;
+    public const VISIBILITY_UNLISTED = 2;
 
-    private const VISIBILITY_PUBLIC_NAME  = 'Публичный';
-    private const VISIBILITY_PRIVATE_NAME = 'Приватный';
+    private const VISIBILITY_PUBLIC_NAME   = 'Публичный';
+    private const VISIBILITY_UNLISTED_NAME = 'Только по ссылке';
 
     private const VISIBILITY_NAMES = [
-        self::VISIBILITY_PUBLIC  => self::VISIBILITY_PUBLIC_NAME,
-        self::VISIBILITY_PRIVATE => self::VISIBILITY_PRIVATE_NAME,
+        self::VISIBILITY_PUBLIC   => self::VISIBILITY_PUBLIC_NAME,
+        self::VISIBILITY_UNLISTED => self::VISIBILITY_UNLISTED_NAME,
     ];
 
     private const SYNTAX_NONE       = 1;

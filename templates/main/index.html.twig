@@ -28,7 +28,7 @@
                             </thead>
                             <tbody>
                             {% for paste in pastesOutput %}
-                                <tr>
+                                <tr onclick="window.location='{{ path('paste_show_one', {'hash': paste.hash}) }}'" style="cursor: pointer">
                                     <td>
                                         {{ paste.name }}
                                     </td>

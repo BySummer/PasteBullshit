@@ -61,6 +61,14 @@ class PasteModel
         return self::VISIBILITY_NAMES;
     }
 
+    public static function getVisibilityName(int $type): string
+    {
+        if (!array_key_exists($type, self::VISIBILITY_NAMES)) {
+            throw new LogicException('Unknown type "' . $type . '"');
+        }
+        return self::VISIBILITY_NAMES[$type];
+    }
+
     public static function getSyntaxNames(): array
     {
         return self::SYNTAX_NAMES;

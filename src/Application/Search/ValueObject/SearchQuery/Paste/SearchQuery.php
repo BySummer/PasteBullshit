@@ -28,7 +28,10 @@ class SearchQuery extends SearchQueryAbstract
         }
 
         $criteria->andWhere(
-            Criteria::expr()->gte('p.expiredAt', new \DateTime())
+            Criteria::expr()->orX(
+                Criteria::expr()->gte('p.expiredAt', new \DateTime()),
+                Criteria::expr()->isNull('p.expiredAt')
+            )
         );
 
         $queryBuilder->addCriteria($criteria);

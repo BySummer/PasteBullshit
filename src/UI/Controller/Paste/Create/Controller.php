@@ -13,7 +13,7 @@ use Throwable;
 class Controller extends AbstractController
 {
     public function __construct(
-        private readonly PasteManager $pasteManager,
+        private readonly PasteManager    $pasteManager,
         private readonly LoggerInterface $logger
     ) {}
 
@@ -26,10 +26,12 @@ class Controller extends AbstractController
             $dto = $form->getData();
 
             try {
-                $this->pasteManager->create($dto);
+                $paste = $this->pasteManager->create($dto);
                 $this->addFlash('success', 'Паста успешно создана');
 
-                return $this->redirectToRoute('home');
+                return $this->redirect(
+                    $this->generateUrl('paste_show_one', ['hash' => $paste->getHash()])
+                );
             } catch (Throwable $e) {
                 $this->logger->error('Ошибка при создании пасты', [
                     'exception' => $e,

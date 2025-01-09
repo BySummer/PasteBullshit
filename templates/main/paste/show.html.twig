@@ -1,0 +1,36 @@
+{% extends 'main/base.html.twig' %}
+
+{% block page_title %}
+    Паста
+{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% import '@AdminLTE/Macros/buttons.html.twig' as btn %}
+                {% block box_body %}
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{{ paste.name }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="callout callout-info">
+                                <pre>{{ paste.content|raw }}</pre>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="pull-right">
+                                <span class="badge badge-secondary">{{ paste.visibility }}</span>
+                                <span class="badge badge-secondary">{{ paste.syntax }}</span>
+                                {% if paste.expiredAt is not null %}
+                                    <span class="badge badge-danger">Истекает {{ paste.expiredAt|date('d.m.Y H:i:s') }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

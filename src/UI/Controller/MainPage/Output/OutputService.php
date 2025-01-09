@@ -12,6 +12,7 @@ class OutputService
         return [
             'name'      => $paste->getName(),
             'syntax'    => PasteModel::getSyntaxName($paste->getSyntax()),
+            'hash'      => $paste->getHash(),
             'expiredAt' => $paste->getExpiredAt(),
             'createdAt' => $paste->getCreatedAt(),
         ];

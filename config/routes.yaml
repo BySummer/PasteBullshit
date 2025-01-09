@@ -5,3 +5,7 @@ home:
 paste_create:
     path: /paste/create
     controller: App\UI\Controller\Paste\Create\Controller
+
+paste_show_one:
+    path: /paste/{hash}
+    controller: App\UI\Controller\Paste\ShowOne\Controller

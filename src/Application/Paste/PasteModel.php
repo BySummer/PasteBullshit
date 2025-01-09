@@ -2,6 +2,8 @@
 
 namespace App\Application\Paste;
 
+use LogicException;
+
 class PasteModel
 {
     public const NO_LIMIT_LIFETIME  = 1;
@@ -24,8 +26,8 @@ class PasteModel
         self::ONE_MONTH_LIFETIME => self::ONE_MONTH_LIFETIME_NAME,
     ];
 
-    private const VISIBILITY_PUBLIC  = 1;
-    private const VISIBILITY_PRIVATE = 2;
+    public const VISIBILITY_PUBLIC  = 1;
+    public const VISIBILITY_PRIVATE = 2;
 
     private const VISIBILITY_PUBLIC_NAME  = 'Публичный';
     private const VISIBILITY_PRIVATE_NAME = 'Приватный';
@@ -62,5 +64,13 @@ class PasteModel
     public static function getSyntaxNames(): array
     {
         return self::SYNTAX_NAMES;
+    }
+
+    public static function getSyntaxName(int $type): string
+    {
+        if (!array_key_exists($type, self::SYNTAX_NAMES)) {
+            throw new LogicException('Unknown type "' . $type . '"');
+        }
+        return self::SYNTAX_NAMES[$type];
     }
 }

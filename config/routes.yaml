@@ -1,6 +1,6 @@
 home:
     path: /
-    controller: App\UI\Controller\MainPageController
+    controller: App\UI\Controller\MainPage\Controller
 
 paste_create:
     path: /paste/create

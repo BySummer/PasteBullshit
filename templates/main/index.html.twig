@@ -4,11 +4,55 @@
 {% block page_title %}Главная страница{% endblock %}
 
 {% block page_content %}
-    <div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
-        <div class="row" style="margin-top: 20%; text-align: center">
-            <p>
-                Раздел пока находится в процессе разработки.
-            </p>
+    <div class="row" style="margin-bottom:6px; margin-top:6px">
+        <div class="col-md-6" >
+            {% import '@AdminLTE/Macros/buttons.html.twig' as btn %}
+            {{ btn.link_button('Создать', path('paste_create'), '', 'primary') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% import '@AdminLTE/Macros/buttons.html.twig' as btn %}
+
+                {% block box_body %}
+                    <div class="table-responsive no-padding">
+                        <table class="table table-bordered table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Язык программирования</th>
+                                <th>Истекает</th>
+                                <th>Дата создания</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for paste in pastesOutput %}
+                                <tr>
+                                    <td>
+                                        {{ paste.name }}
+                                    </td>
+                                    <td>
+                                        {{ paste.syntax }}
+                                    </td>
+                                    <td>
+                                        {{ paste.expiredAt ? paste.expiredAt|date('d.m.Y H:i:s') : '--' }}
+                                    </td>
+                                    <td>
+                                        {{ paste.createdAt|date('d.m.Y H:i:s') }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endblock %}
+                {%- block box_footer -%}
+                    {% if pagination.pageCount > 1 %}
+                        {% include 'main/widgets/pagination.html.twig' with {'pagination': pagination} only %}
+                    {% endif %}
+                {%- endblock -%}
+            {% endembed %}
         </div>
     </div>
 {% endblock %}

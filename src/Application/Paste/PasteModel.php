@@ -37,9 +37,9 @@ class PasteModel
         self::VISIBILITY_UNLISTED => self::VISIBILITY_UNLISTED_NAME,
     ];
 
-    private const SYNTAX_NONE       = 1;
-    private const SYNTAX_PHP        = 2;
-    private const SYNTAX_JAVASCRIPT = 3;
+    public const SYNTAX_NONE       = 1;
+    public const SYNTAX_PHP        = 2;
+    public const SYNTAX_JAVASCRIPT = 3;
 
     private const SYNTAX_NONE_NAME       = 'Без языка';
     private const SYNTAX_PHP_NAME        = 'PHP';

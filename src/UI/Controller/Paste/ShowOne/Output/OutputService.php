@@ -15,7 +15,7 @@ class OutputService
             'visibility'      => PasteModel::getVisibilityName($paste->getVisibility()),
             'expiredAt'       => $paste->getExpiredAt(),
             'syntax'          => PasteModel::getSyntaxName($paste->getSyntax()),
-            'syntaxHighlight' => null,
+            'syntaxHighlight' => $paste->getSyntax() !== PasteModel::SYNTAX_NONE,
         ];
     }
 }

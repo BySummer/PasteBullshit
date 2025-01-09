@@ -16,7 +16,11 @@
                         </div>
                         <div class="box-body">
                             <div class="callout callout-info">
-                                <pre>{{ paste.content|raw }}</pre>
+                                {% if paste.syntaxHighlight %}
+                                    <pre><code>{{ paste.content|raw }}</code></pre>
+                                {% else %}
+                                    {{ paste.content }}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="box-footer">
@@ -33,4 +37,9 @@
             {% endembed %}
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            hljs.highlightAll()
+        });
+    </script>
 {% endblock %}
